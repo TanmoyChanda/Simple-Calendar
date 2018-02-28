@@ -12,7 +12,7 @@ agent any
 			steps{
 				 
 				sh 'export SDK_ROOT=/var/lib/jenkins/tools/android-sdk && export ANDROID_HOME=/var/lib/jenkins/tools/android-sdk && /var/lib/jenkins/workspace/DevOps_on_Android/gradlew build'
-				sh 'cd ${WORKSPACE}/app/build/outputs/apk/release'
+				sh 'cd ${WORKSPACE}/app/build/outputs/apk/release/'
 				sh 'mv calendar-release-unsigned.apk calendar-release${BUILD_NUMBER}-unsigned.apk'
 
 

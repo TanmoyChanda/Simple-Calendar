@@ -29,5 +29,20 @@ agent any
 				sh 'cd ${WORKSPACE}/app/build/outputs/apk/release/ && mv calendar-release.apk calendar-release${BUILD_NUMBER}.apk'
 				}
 			}	
+
+			steps {
+				shell('''
+				|cd target
+				|curl -v -F r=maven-releases -F hasPom=false -F e=apk -F -F p=apk -F file=@app/build/outputs/apk/release/calendar-release${BUILD_NUMBER}.apk -u admin:admin123 http://13.127.211.17:8081/repository/maven-releases/
+				'''.stripMargin()
+        )
+    }			
+
+		stage('Upload to HockeyApp') {
+			steps{
+				sh '${WORKSPACE}/Upload.sh'
+				}
+			}	
 		}
-}		
+
+}

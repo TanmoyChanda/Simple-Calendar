@@ -12,40 +12,12 @@ agent any
 			steps{
 				 
 				sh 'export SDK_ROOT=/var/lib/jenkins/tools/android-sdk && export ANDROID_HOME=/var/lib/jenkins/tools/android-sdk && /var/lib/jenkins/workspace/Test-Pipeline/gradlew build'
-
+				sh 'cd ${WORKSPACE}/app/build/outputs/apk/release'
+				sh 'mv calendar-release-unsigned.apk calendar-release-${BUILD_NUMBER}-unsigned.apk'
 
 
 				  
 			    }
 		}
-
-		stage('Sign Apk and archive') {
-			steps{
-			
-				sh 'export SDK_ROOT=/var/lib/jenkins/tools/android-sdk && export ANDROID_HOME=/var/lib/jenkins/tools/android-sdk'
-			 
-				step([ skipZipalign: true , $class: 'SignApksBuilder', apksToSign: '**/*-unsigned.apk', keyAlias: '', keyStoreId: 'test'])
-			 
-				archiveArtifacts artifacts: '**/*.apk', onlyIfSuccessful: true
-				}
-			}	
-
-			steps{
-				shell('''
-				|cd target
-				|curl -v -F r=maven-releases -F hasPom=false -F e=apk -F -F p=apk -F file=@app/build/outputs/apk/release/calendar-release.apk -u admin:admin123 http://13.127.211.17:8081/repository/maven-releases/
-				'''.stripMargin()
-        )
-    }			
-
-		stage('Upload to HockeyApp') {
-			steps{
-				sh '${WORKSPACE}/Upload.sh'
-				}
-			}	
-		}
-
-}
-
-
-
+	}
+}	

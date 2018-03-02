@@ -28,7 +28,7 @@ agent any
 				
 				sh 'cd ${WORKSPACE}/app/build/outputs/apk/release/ && mv calendar-release.apk calendar-release${BUILD_NUMBER}.apk'
 				
-				nexusArtifactUploader artifacts: [[artifactId: 'Calendar-${BUILD_NUMBER}', classifier: '', file: 'app/build/outputs/apk/release/calendar-release${BUILD_NUMBER}.apk', type: 'apk']], credentialsId: 'fa18aea1-3423-41d0-b55a-b1d319a9c5b4', groupId: 'admin', nexusUrl: '13.127.211.17:8081/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'releases', version: '${BUILD_NUMBER}'
+				nexusArtifactUploader artifacts: [[artifactId: 'Calendar-app', classifier: '', file: 'app/build/outputs/apk/release/calendar-release${BUILD_NUMBER}.apk', type: 'apk']], credentialsId: 'fa18aea1-3423-41d0-b55a-b1d319a9c5b4', groupId: 'admin', nexusUrl: '13.127.211.17:8081/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'releases', version: '${BUILD_NUMBER}'
 				
 				}
 			}	

@@ -17,7 +17,7 @@ agent any
 			    }
 		}
 
-		stage('Sign Apk and archive') {
+		stage('Sign Apk and archive on Nexus') {
 			steps{
 			
 				sh 'export SDK_ROOT=/var/lib/jenkins/tools/android-sdk && export ANDROID_HOME=/var/lib/jenkins/tools/android-sdk'
@@ -32,7 +32,11 @@ agent any
 				
 				}
 			}	
-		
+		stage('Testing') {
+      			steps {
+              			sh 'echo Testing is Going on'
+            			}
+         		 }
 
 		stage('Upload to HockeyApp') {
 			steps{

@@ -20,7 +20,7 @@ pipeline {
 			    }
 		}
 
-		stage('Sign Apk and archive on Nexus') {
+		stage('Sign Apk and archive to Nexus') {
 			steps{
 			
 				sh 'export SDK_ROOT=/var/lib/jenkins/tools/android-sdk && export ANDROID_HOME=/var/lib/jenkins/tools/android-sdk'

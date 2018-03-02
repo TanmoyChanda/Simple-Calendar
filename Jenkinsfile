@@ -1,13 +1,16 @@
-pipeline 
-{
-agent any
-    
-    stages{
-		stage('Checkout') {
-			steps{
-							checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/TanmoyChanda/Simple-Calendar']]])
-						   }
-					}	   
+pipeline {
+
+  agent any
+  stages {
+    stage('Checkout Code'){
+      steps {
+        node('master') {
+          deleteDir()
+          checkout scm
+          stash 'code'
+        }
+      }
+    }	   
 		stage('Build') {
 			steps{
 				 

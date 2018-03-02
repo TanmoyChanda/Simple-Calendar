@@ -28,7 +28,7 @@ agent any
 				
 				sh 'cd ${WORKSPACE}/app/build/outputs/apk/release/ && mv calendar-release.apk calendar-release${BUILD_NUMBER}.apk'
 				
-				nexusPublisher nexusInstanceId: '12', nexusRepositoryId: 'releases', packages: []
+				nexusPublisher nexusInstanceId: '12', nexusRepositoryId: 'thirdparty', packages: []
 				
 				}
 			}	

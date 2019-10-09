@@ -16,5 +16,14 @@ steps:
     gradleWrapperFile: 'gradlew'
     gradleOptions: '-Xmx3072m'
     publishJUnitResults: false
+- task: Gradle@2
+  inputs:
+    gradleWrapperFile: 'gradlew'
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
+    tasks: 'build'
+    publishJUnitResults: false
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
+    sonarQubeRunAnalysis: false
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'assembleDebug'
